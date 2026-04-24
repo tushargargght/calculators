@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Calculators</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0b;
+    --bg2: #111113;
+    --bg3: #18181c;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0efe8;
+    --muted: #6b6a65;
+    --muted2: #9b9a94;
+    --green: #3ddc84;
+    --green-bg: rgba(61,220,132,0.08);
+    --green-border: rgba(61,220,132,0.2);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+  body {
+    background: var(--bg); color: var(--text); font-family: var(--sans);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .grid-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .glow {
+    position: fixed; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(61,220,132,0.1) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .wrap {
+    position: relative; z-index: 1;
+    max-width: 720px; width: 100%;
+  }
+  .tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    color: var(--green); background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    padding: 5px 12px; border-radius: 3px; margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem); font-weight: 800;
+    line-height: 1.05; letter-spacing: -0.03em;
+  }
+  h1 span { color: var(--green); }
+  .sub {
+    margin-top: 12px; font-family: var(--mono);
+    font-size: 13px; color: var(--muted); letter-spacing: 0.02em;
+  }
+  .cards {
+    margin-top: 40px; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--border); border-radius: 12px; overflow: hidden;
+  }
+  @media(max-width:640px){ .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--bg2); padding: 28px; text-decoration: none;
+    color: var(--text); display: block; transition: background 0.2s;
+  }
+  .card:hover { background: var(--bg3); }
+  .card-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em;
+    color: var(--muted); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 22px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-family: var(--mono); font-size: 12px; color: var(--muted2);
+    line-height: 1.6;
+  }
+  .arrow {
+    display: inline-block; margin-top: 16px; font-family: var(--mono);
+    font-size: 11px; color: var(--green); letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  footer {
+    margin-top: 40px; font-family: var(--mono); font-size: 11px;
+    color: var(--muted); text-align: center; letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="glow"></div>
+<div class="wrap">
+  <div class="tag"><span class="dot"></span>Trading Tools</div>
+  <h1>Trade <span>Calculators</span></h1>
+  <p class="sub">// leverage · position sizing · risk-reward</p>
+  <div class="cards">
+    <a class="card" href="trade-calculator.html">
+      <div class="card-label">// 01</div>
+      <div class="card-title">Trade Calculator</div>
+      <div class="card-desc">Compute required leverage from entry + liquidation price, then see profit and R:R at each target.</div>
+      <div class="arrow">Open →</div>
+    </a>
+    <a class="card" href="position-size-calculator.html">
+      <div class="card-label">// 02</div>
+      <div class="card-title">Position Size Calculator</div>
+      <div class="card-desc">Size an exact position from risk amount and stop loss. Shows margin required at any leverage.</div>
+      <div class="arrow">Open →</div>
+    </a>
+  </div>
+  <footer>Not financial advice · Trade responsibly</footer>
+</div>
+</body>
+</html>
